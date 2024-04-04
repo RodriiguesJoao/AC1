@@ -1,68 +1,47 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro de Pacientes</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Sistema de Pacientes</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
-
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sitema de Cadastro de Pacientes</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <div class="content">
 
 <body>
     <header>
-        <h1 class="titulo">Sistema de Cadastro de Pacientes</h1>
-        <h3 class="subtitulo">O sistema permite o cadastro dos pacientes</h3>
+        <h1>Sistema de Cadastro de Pacientes</h1>
+        <h3 class="subtitulo">O sistema permite o cadastro de um novo paciente</h3>
         <nav>
-            <ul>
-                <li><a href="index.html">Página principal</a></li>
-                <li><a href="paciente.html">Cadastrar Pacientes</a></li>
-            </ul>
+            <a href="index.html">Página Inicial</a> | <a href="#">Cadastrar Paciente</a>
         </nav>
     </header>
-
-    <body>
-        <form action="#" method="post">
-            <label for="data">Data:</label><br>
-            <input type="date" id="data" name="data"><br><br>
-
-            <label for="id">ID:</label><br>
-            <input type="number" id="id" name="id"><br><br>
-
-            <label for="nome">Nome:</label><br>
-            <input type="text" id="nome" name="nome"><br><br>
-
-            <label for="endereco">Endereço:</label><br>
-            <input type="text" id="endereco" name="endereco"><br><br>
-
-            <label for="numero">Número:</label><br>
-            <input type="number" id="numero" name="numero"><br><br>
-
-            <label for="estado">Estado:</label><br>
-            <input type="text" id="estado" name="estado"><br><br>
-
-            <label for="cidade">Cidade:</label><br>
-            <input type="text" id="cidade" name="cidade"><br><br>
-
-            <input type="submit" value="Enviar">
+    <br>
+    <main>
+        <form>
+            <label for="data">Data:</label>
+            <input type="date" id="data" name="data">
+            <label for="id">ID:</label>
+            <input type="number" id="id" name="id">
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome">
+            <label for="endereco">Endereço:</label>
+            <input type="text" id="endereco" name="endereco">
+            <label for="numero">Número:</label>
+            <input type="number" id="numero" name="numero">
+            <label for="estado">Estado:</label>
+            <input type="text" id="estado" name="estado">
+            <label for="cidade">Cidade:</label>
+            <input type="text" id="cidade" name="cidade">
+            <input type="submit" value="Cadastrar">
         </form>
         <br>
         <img src="data:image/png;base64,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"
             alt="Logo da Facens" class="imagem">
-        <br>
-        <footer>
-            <p class="rodape">Todos os direitos autorais reservados para a super dupla João e Arthur.</p>
-        </footer>
-    </body>
+    </main>
+    <footer>
+        <p class="rodape">Todos os direitos autorais reservados para a super dupla João e Arthur.</p>
+    </footer>
+    <script src="classes.js"></script>
+    <script src="main.js"></script>
+</body>
 
 </html>

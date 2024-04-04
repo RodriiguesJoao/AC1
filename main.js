@@ -8,37 +8,34 @@ class Main {
     }
 
     addMedicamentoPaciente(idPaciente, codigoMedicamento, nome, tipo) {
-        const paciente = this.pacientes.find(p => p.id === idPaciente);
+        let paciente = this.pacientes.find(paciente => paciente.id === idPaciente);
         if (paciente) {
-            paciente.medicamentosPrescritos.push({ codigo: codigoMedicamento, nome: nome, tipo: tipo });
-        } else {
-            console.log("Paciente não encontrado.");
+            paciente.inserirMedicamentoPrescrito(new Medicamento(codigoMedicamento, nome, tipo));
         }
     }
 
     transferirMedicamento(idPacienteOrigem, idPacienteDestino, codigoMedicamento) {
-        const pacienteOrigem = this.pacientes.find(p => p.id === idPacienteOrigem);
-        const pacienteDestino = this.pacientes.find(p => p.id === idPacienteDestino);
+        let pacienteOrigem = this.pacientes.find(paciente => paciente.id === idPacienteOrigem);
+        let pacienteDestino = this.pacientes.find(paciente => paciente.id === idPacienteDestino);
         if (pacienteOrigem && pacienteDestino) {
-            const index = pacienteOrigem.medicamentosPrescritos.findIndex(m => m.codigo === codigoMedicamento);
-            if (index !== -1) {
-                const medicamento = pacienteOrigem.medicamentosPrescritos.splice(index, 1)[0];
-                pacienteDestino.medicamentosPrescritos.push(medicamento);
-            } else {
-                console.log("Medicamento não encontrado para transferência.");
+            let medicamento = pacienteOrigem.getMedicamentoPrescrito(codigoMedicamento);
+            if (medicamento) {
+                pacienteOrigem.removerMedicamentoPrescritoByCodigo(codigoMedicamento);
+                pacienteDestino.inserirMedicamentoPrescrito(medicamento);
             }
-        } else {
-            console.log("Paciente de origem ou destino não encontrado.");
         }
     }
 
     mostrarTodosOsPacientes() {
-        this.pacientes.forEach(p => {
-            console.log(Paciente: ${p.nome});
-            console.log("Medicamentos Prescritos:");
-            p.medicamentosPrescritos.forEach(m => {
-                console.log(Código: ${m.codigo}, Nome: ${m.nome}, Tipo: ${m.tipo});
-            });
-        });
+        this.pacientes.forEach(paciente => console.log(paciente.imprimirCompleto()));
     }
 }
+
+let main = new Main();
+main.addPaciente(new Paciente(1, "João Rodrigues"));
+main.addMedicamentoPaciente(1, 1, "Paracetamol", "Analgésico");
+main.addMedicamentoPaciente(1, 2, "Amoxicilina", "Antibiótico");
+main.mostrarTodosOsPacientes();
+main.addPaciente(new Paciente(2, "Arthur Teberges"));
+main.transferirMedicamento(1, 2, 1);
+main.mostrarTodosOsPacientes();
